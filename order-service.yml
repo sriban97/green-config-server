@@ -26,8 +26,8 @@ management:
   endpoints:
     web:
       exposure:
-        include:
-          - health
+        include: "*"
+
   endpoint:
     health:
       show-details: ALWAYS
@@ -51,13 +51,14 @@ resilience4j:
         waitDurationInOpenState: 2s
         permittedNumberOfCallsInHalfOpenState: 3
         automaticTransitionFromOpenToHalfOpenEnabled: true
+
   ratelimiter:
     configs:
       default:
         registerHealthIndicator: true
+
   retry:
     retry-aspect-order: 2
-
     instances:
       payment-service:
         max-attempts: 3
