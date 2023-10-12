@@ -1,0 +1,68 @@
+server:
+  port: 8082
+spring:
+  application:
+    name: producer-service
+  datasource:
+    url: jdbc:mysql://localhost:3306/dsa
+    username: admin
+    password: Sriban@123
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        show_sql: true
+        format_sql: true
+
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+management:
+  health:
+    circuitbreakers:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include:
+          - health
+  endpoint:
+    health:
+      show-details: ALWAYS
+  tracing:
+    sampling:
+      probability: 1.0
+resilience4j:
+  circuitbreaker:
+    configs:
+      default:
+        registerHealthIndicator: true
+    instances:
+      consumer-service:
+        eventConsumerBufferSize: 10
+        slidingWindowType: COUNT_BASED
+        slidingWindowSize: 5
+        failureRateThreshold: 50
+        waitDurationInOpenState: 2s
+        permittedNumberOfCallsInHalfOpenState: 3
+        automaticTransitionFromOpenToHalfOpenEnabled: true
+  ratelimiter:
+    configs:
+      default:
+        registerHealthIndicator: true
+#  retry:
+#    configs:
+#      default:
+#        registerHealthIndicator: true
+#    instances:
+#      consumer-service:
+#        maxAttempts: 2
+#        waitDuration: 5s
+#  bulkhead:
+#    instances:
+#      consumer-service:
+#        maxWaitDuration: 1s

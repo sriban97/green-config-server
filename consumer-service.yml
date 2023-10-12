@@ -1,0 +1,25 @@
+server:
+  port: 8085
+spring:
+  application:
+    name: consumer-service
+
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include:
+          - health
+  endpoint:
+    health:
+      show-details: ALWAYS
+  tracing:
+    sampling:
+      probability: 1.0
