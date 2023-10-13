@@ -17,7 +17,10 @@ server:
 ---
 
 spring:
-  profiles: dev
+  config:
+    activate:
+      on-profile:
+        - dev
 server:
   email: dev@mkyong.com
   cluster:
@@ -31,7 +34,10 @@ server:
 ---
 
 spring:
-  profiles: prod
+  config:
+    activate:
+      on-profile:
+        - prod
 server:
   email: prod@mkyong.com
   cluster:
