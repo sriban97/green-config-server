@@ -1,10 +1,9 @@
 server:
   port: 8081
 spring:
+  profiles: dev
   config:
     import: 'optional:configserver:http://192.168.1.31:9090'
-    activate:
-      on-profile: dev
   cloud:
     gateway:
       discovery:
