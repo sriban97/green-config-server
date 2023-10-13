@@ -1,0 +1,41 @@
+server:
+  port: 8081
+spring:
+  config:
+    import: 'optional:configserver:http://192.168.1.31:9090'
+    activate:
+      on-profile:
+        -dev
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:8080/realms/spring-boot-green
+
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include:
+          - health
+  endpoint:
+    health:
+      show-details: ALWAYS
+  tracing:
+    enabled: true
+    sampling:
+      probability: 1.0
