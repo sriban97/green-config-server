@@ -1,7 +1,5 @@
 name: none
 ---
-server:
-  port: 8761
 spring:
   profiles: dev
   name: development
@@ -13,7 +11,6 @@ eureka:
       enabled: true
     fetch-registry: false
     register-with-eureka: false
-
 management:
   endpoints:
     web:
