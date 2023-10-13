@@ -11,6 +11,7 @@ management:
     enabled: true
     sampling:
       probability: 1.0
+---
 
 spring:
   config:
