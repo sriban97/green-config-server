@@ -1,6 +1,21 @@
-server:
-  port: 8081
+management:
+  endpoints:
+    web:
+      exposure:
+        include:
+          - health
+  endpoint:
+    health:
+      show-details: ALWAYS
+  tracing:
+    enabled: true
+    sampling:
+      probability: 1.0
+
 spring:
+  config:
+    activate:
+      on-profile: dev
   cloud:
     gateway:
       discovery:
@@ -20,17 +35,26 @@ eureka:
     register-with-eureka: true
     fetch-registry: true
 
+---
 
-management:
-  endpoints:
-    web:
-      exposure:
-        include:
-          - health
-  endpoint:
-    health:
-      show-details: ALWAYS
-  tracing:
-    enabled: true
-    sampling:
-      probability: 1.0
+spring:
+  config:
+    activate:
+      on-profile: prod
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://192.168.1.0:8080/realms/spring-boot-green
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    register-with-eureka: true
+    fetch-registry: true
