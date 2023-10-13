@@ -1,6 +1,25 @@
-server:
-  port: 8086
+management:
+  health:
+    circuitbreakers:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: ALWAYS
+  tracing:
+    enabled: true
+    sampling:
+      probability: 1.0
+
+---
+
 spring:
+  config:
+    activate:
+      on-profile: dev
   datasource:
     url: jdbc:mysql://localhost:3306/dsa
     username: admin
@@ -19,22 +38,6 @@ eureka:
   client:
     register-with-eureka: true
     fetch-registry: true
-management:
-  health:
-    circuitbreakers:
-      enabled: true
-  endpoints:
-    web:
-      exposure:
-        include: "*"
-
-  endpoint:
-    health:
-      show-details: ALWAYS
-  tracing:
-    enabled: true
-    sampling:
-      probability: 1.0
 
 resilience4j:
   circuitbreaker:
@@ -65,3 +68,10 @@ resilience4j:
         wait-duration: 5s
         enable-exponential-backoff: true
         exponential-backoff-multiplier: 2
+
+---
+
+spring:
+  config:
+    activate:
+      on-profile: prod

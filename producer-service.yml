@@ -1,6 +1,24 @@
-server:
-  port: 8082
+management:
+  health:
+    circuitbreakers:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include:
+          - health
+  endpoint:
+    health:
+      show-details: ALWAYS
+  tracing:
+    sampling:
+      probability: 1.0
+---
+
 spring:
+  config:
+    activate:
+      on-profile: dev
   application:
     name: producer-service
   datasource:
@@ -21,21 +39,6 @@ eureka:
   client:
     register-with-eureka: true
     fetch-registry: true
-management:
-  health:
-    circuitbreakers:
-      enabled: true
-  endpoints:
-    web:
-      exposure:
-        include:
-          - health
-  endpoint:
-    health:
-      show-details: ALWAYS
-  tracing:
-    sampling:
-      probability: 1.0
 resilience4j:
   circuitbreaker:
     configs:
@@ -66,3 +69,10 @@ resilience4j:
 #    instances:
 #      consumer-service:
 #        maxWaitDuration: 1s
+
+
+---
+spring:
+  config:
+    activate:
+      on-profile: prod
