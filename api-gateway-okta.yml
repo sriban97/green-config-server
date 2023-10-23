@@ -23,11 +23,11 @@ spring:
         locator:
           enabled: true
           lower-case-service-id: true
-#  security:
-#    oauth2:
-#      resourceserver:
-#        jwt:
-#          issuer-uri: http://localhost:8080/realms/spring-boot-green
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:8080/realms/spring-boot-green
 
 eureka:
   instance:
@@ -39,6 +39,7 @@ eureka:
 okta:
   oauth2:
     issuer: https://dev-31054060.okta.com/oauth2/default
+
 
 ---
 
@@ -63,9 +64,3 @@ eureka:
   client:
     register-with-eureka: true
     fetch-registry: true
-
-okta:
-  oauth2:
-    issuer: https://dev-31054060.okta.com/oauth2/auscqqvw9tgWRIGmn5d7
-    client-id: 0oacw6xg5b5xQzUZi5d7
-    client-secret: qy4SD_v-cN0DaTieNPmiGz046toZB_U5TcTwcqhWA04rL13KoMEA3exEtXIkidJ5
