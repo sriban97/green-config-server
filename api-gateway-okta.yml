@@ -38,9 +38,7 @@ eureka:
 
 okta:
   oauth2:
-    issuer: https://dev-31054060.okta.com/oauth2/auscqqvw9tgWRIGmn5d7
-    client-id: 0oacw6xg5b5xQzUZi5d7
-    client-secret: qy4SD_v-cN0DaTieNPmiGz046toZB_U5TcTwcqhWA04rL13KoMEA3exEtXIkidJ5
+    issuer: https://dev-31054060.okta.com/oauth2/default
 
 ---
 
