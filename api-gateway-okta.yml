@@ -39,7 +39,7 @@ eureka:
 okta:
   oauth2:
     issuer: https://dev-31054060.okta.com/oauth2/default
-
+    client-id: 0oacw761jzs5Hb5gM5d7
 
 ---
 
