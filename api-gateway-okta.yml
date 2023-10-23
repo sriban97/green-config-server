@@ -12,7 +12,8 @@ management:
     sampling:
       probability: 1.0
 ---
-
+server:
+  port: 8080
 spring:
   config:
     activate:

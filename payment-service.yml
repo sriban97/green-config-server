@@ -15,6 +15,9 @@ management:
       probability: 1.0
 ---
 
+server:
+  port: 8082
+
 spring:
   config:
     activate:
