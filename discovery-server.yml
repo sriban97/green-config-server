@@ -12,6 +12,7 @@ management:
     sampling:
       probability: 1.0
 ---
+
 server:
   port: 8761
 spring:
