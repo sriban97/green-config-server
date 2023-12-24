@@ -24,14 +24,13 @@ spring:
 eureka:
   instance:
     preferIpAddress: true
-    ip-address: 192.168.1.31
   client:
     healthcheck:
       enabled: true
     fetch-registry: false
     register-with-eureka: false
     serviceUrl:
-      defaultZone: http://192.168.1.31/eureka/
+      defaultZone: http://192.168.1.31:8761/eureka/
 
 ---
 
