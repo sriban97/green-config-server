@@ -28,7 +28,7 @@ spring:
     password: Root@123
   jpa:
     hibernate:
-      ddl-auto: create
+      ddl-auto: create-drop
     properties:
       hibernate:
         show_sql: true
