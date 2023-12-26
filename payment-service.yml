@@ -24,8 +24,8 @@ spring:
       on-profile: dev
   datasource:
     url: jdbc:mysql://192.168.1.7:3306/dsa
-    username: admin
-    password: Sriban@123
+    username: root
+    password: Root@123
   jpa:
     hibernate:
       ddl-auto: update
