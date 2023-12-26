@@ -23,7 +23,7 @@ spring:
     activate:
       on-profile: dev
   datasource:
-    url: jdbc:mysql://localhost:3306/dsa
+    url: jdbc:mysql://192.168.1.7:3306/dsa
     username: admin
     password: Sriban@123
   jpa:
@@ -40,6 +40,8 @@ eureka:
   client:
     register-with-eureka: true
     fetch-registry: true
+    serviceUrl:
+      defaultZone: http://192.168.1.7:8761/eureka/
 
 resilience4j:
   circuitbreaker:
