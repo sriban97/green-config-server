@@ -22,9 +22,9 @@ spring:
     activate:
       on-profile: dev
   datasource:
-    url: jdbc:mysql://localhost:3306/dsa
-    username: admin
-    password: Sriban@123
+    url: jdbc:mysql://192.168.1.7:3306/dsa
+    username: root
+    password: Root@123
     driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     hibernate:
@@ -42,7 +42,7 @@ spring:
     template:
       default-topic: client_info
     producer:
-      bootstrap-servers: localhost:9092
+      bootstrap-servers: 192.168.1.7:9092
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
 
