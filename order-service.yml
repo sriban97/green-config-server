@@ -75,7 +75,60 @@ resilience4j:
 
 ---
 
+
+server:
+  port: 8082
 spring:
   config:
     activate:
       on-profile: prod
+  datasource:
+    url: jdbc:mysql://192.168.1.15:3306/dsa
+    username: root
+    password: Admin@123
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        show_sql: true
+        format_sql: false
+
+eureka:
+  instance:
+    preferIpAddress: true
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    serviceUrl:
+      defaultZone: http://192.168.1.14:8761/eureka/
+
+resilience4j:
+  circuitbreaker:
+    circuit-breaker-aspect-order: 1
+    configs:
+      default:
+        registerHealthIndicator: true
+    instances:
+      payment-service:
+        eventConsumerBufferSize: 10
+        slidingWindowType: COUNT_BASED
+        slidingWindowSize: 3
+        failureRateThreshold: 50
+        waitDurationInOpenState: 2s
+        permittedNumberOfCallsInHalfOpenState: 3
+        automaticTransitionFromOpenToHalfOpenEnabled: true
+
+  ratelimiter:
+    configs:
+      default:
+        registerHealthIndicator: true
+
+  retry:
+    retry-aspect-order: 2
+    instances:
+      payment-service:
+        max-attempts: 3
+        wait-duration: 5s
+        enable-exponential-backoff: true
+        exponential-backoff-multiplier: 2
