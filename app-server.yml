@@ -1,4 +1,25 @@
+spring:
+  config:
+    activate:
+      on-profile: dev
+  datasource:
+    url: jdbc:mysql://192.168.1.7:3306/dsa
+    username: root
+    password: Root@123
+  kafka:
+    producer:
+      bootstrap-servers: 192.168.1.7:9092
+    consumer:
+      bootstrap-servers: 192.168.1.7:9092
 eureka:
   client:
     serviceUrl:
       defaultZone: http://192.168.1.15:8761/eureka/
+
+
+---
+
+spring:
+  config:
+    activate:
+      on-profile: prod

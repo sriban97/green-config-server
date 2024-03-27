@@ -22,10 +22,6 @@ spring:
   config:
     activate:
       on-profile: dev
-  datasource:
-    url: jdbc:mysql://192.168.1.7:3306/dsa
-    username: root
-    password: Root@123
   jpa:
     hibernate:
       ddl-auto: update
@@ -33,6 +29,12 @@ spring:
       hibernate:
         show_sql: true
         format_sql: false
+  kafka:
+    consumer:
+      bootstrap-servers: 192.168.1.7:9092
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      group-id: payment-group
 
 eureka:
   instance:
