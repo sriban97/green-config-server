@@ -1,11 +1,11 @@
 spring:
-#  config:
-#    activate:
-#      on-profile: dev
+  config:
+    activate:
+      on-profile: dev
   datasource:
     url: jdbc:mysql://192.168.1.7:3306/dsa
     username: root
-    password: Root@123
+    password: Admin@123
   kafka:
     producer:
       bootstrap-servers: 192.168.1.7:9092
