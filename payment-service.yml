@@ -30,8 +30,6 @@ spring:
         show_sql: true
         format_sql: false
   kafka:
-    template:
-      default-topic: create-payment
     consumer:
       bootstrap-servers: 192.168.1.9:9092
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
