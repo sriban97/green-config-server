@@ -31,7 +31,7 @@ spring:
         format_sql: false
   kafka:
     template:
-      default-topic: client_info
+      default-topic: create-payment
     producer:
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
