@@ -94,44 +94,48 @@ spring:
       hibernate:
         show_sql: true
         format_sql: false
+    kafka:
+      template:
+        default-topic: create-payment
+      producer:
+        key-serializer: org.apache.kafka.common.serialization.StringSerializer
+        value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+  eureka:
+    instance:
+      preferIpAddress: true
+    client:
+      register-with-eureka: true
+      fetch-registry: true
+  #    serviceUrl:
+  #      defaultZone: http://192.168.1.14:8761/eureka/
 
-eureka:
-  instance:
-    preferIpAddress: true
-  client:
-    register-with-eureka: true
-    fetch-registry: true
-#    serviceUrl:
-#      defaultZone: http://192.168.1.14:8761/eureka/
+  resilience4j:
+    circuitbreaker:
+      circuit-breaker-aspect-order: 1
+      configs:
+        default:
+          registerHealthIndicator: true
+      instances:
+        payment-service:
+          eventConsumerBufferSize: 10
+          slidingWindowType: COUNT_BASED
+          slidingWindowSize: 3
+          failureRateThreshold: 50
+          waitDurationInOpenState: 2s
+          permittedNumberOfCallsInHalfOpenState: 3
+          automaticTransitionFromOpenToHalfOpenEnabled: true
 
-resilience4j:
-  circuitbreaker:
-    circuit-breaker-aspect-order: 1
-    configs:
-      default:
-        registerHealthIndicator: true
-    instances:
-      payment-service:
-        eventConsumerBufferSize: 10
-        slidingWindowType: COUNT_BASED
-        slidingWindowSize: 3
-        failureRateThreshold: 50
-        waitDurationInOpenState: 2s
-        permittedNumberOfCallsInHalfOpenState: 3
-        automaticTransitionFromOpenToHalfOpenEnabled: true
+    ratelimiter:
+      configs:
+        default:
+          registerHealthIndicator: true
 
-  ratelimiter:
-    configs:
-      default:
-        registerHealthIndicator: true
-
-  retry:
-    retry-aspect-order: 2
-    instances:
-      payment-service:
-        max-attempts: 3
-        wait-duration: 5s
-        enable-exponential-backoff: true
-        exponential-backoff-multiplier: 2
-
+    retry:
+      retry-aspect-order: 2
+      instances:
+        payment-service:
+          max-attempts: 3
+          wait-duration: 5s
+          enable-exponential-backoff: true
+          exponential-backoff-multiplier: 2
 ---
