@@ -32,8 +32,8 @@ eureka:
     register-with-eureka: false
 #    serviceUrl:
 #      defaultZone: http://192.168.1.14:8761/eureka/
-name: mari
-dep: me
+name: sriban
+dep: tamil
 ---
 
 spring:
