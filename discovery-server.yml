@@ -1,9 +1,10 @@
 management:
   endpoints:
+    refresh:
+      enabled: true
     web:
       exposure:
-        include:
-          - health
+        include: "*"
   endpoint:
     health:
       show-details: ALWAYS
